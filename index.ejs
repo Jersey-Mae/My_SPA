@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header-bar">
+        <div class="title-section">
+            <h1><%= title %></h1>
+            <p><%= companyName %></p>
+        </div>
+        <div class="date-badge">
+            <label for="report-date">Date:</label>
+            <input type="date" id="report-date" value="<%= defaultDate %>">
+        </div>
+    </div>
+
+    <!-- Summary KPI Cards -->
+    <div class="summary-cards">
+        <div class="card">
+            <div class="card-title">Total Sales</div>
+            <div class="card-value" id="total-sales-card">₱0.00</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Total Commission</div>
+            <div class="card-value" id="total-comm-card">₱0.00</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Net Revenue</div>
+            <div class="card-value" id="net-revenue-card">₱0.00</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Total Sessions</div>
+            <div class="card-value" id="total-count-card">0</div>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Service Name</th>
+                    <th>Room No.</th>
+                    <th>Time</th>
+                    <th>Total (₱)</th>
+                    <th>Comm (₱)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="sales-tbody">
+                <!-- Dynamically loaded from MySQL database -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right;"><strong>TOTAL:</strong></td>
+                    <td id="foot-total-sales">₱0.00</td>
+                    <td id="foot-total-comm">₱0.00</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Input Form -->
+    <div class="add-form-container">
+        <h3>+ Add New Sales Record</h3>
+        <div class="form-grid">
+            <input type="text" id="new-name" placeholder="Staff Name" required>
+            <input type="text" id="new-service" placeholder="Service Name">
+            <select id="new-room">
+                <option value="">Room No.</option>
+                <option value="1">Room 1</option>
+                <option value="2">Room 2</option>
+                <option value="3">Room 3</option>
+                <option value="4">Room 4</option>
+                <option value="5">Room 5</option>
+            </select>
+            <input type="text" id="new-time" placeholder="Time (e.g. 1:09 PM)">
+            <input type="number" id="new-total" placeholder="Total (₱)">
+            <input type="number" id="new-comm" placeholder="Comm (₱)">
+        </div>
+        <button class="btn-add" onclick="addEntry()">Add Record</button>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn-secondary" onclick="exportCSV()">Export CSV</button>
+        <button class="btn-secondary" onclick="window.print()">Print Report</button>
+    </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
